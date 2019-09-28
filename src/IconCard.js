@@ -9,20 +9,25 @@ export function IconCard({
 })
 
 {
+
+  const urlExtension = url.split(".").pop();
+
   return (
     <li className="icon-container">
-      <i className={`fa${isBrandCategory ? 'b' : 's'} fa-${iconName}`} />
-      <h4>{iconName}</h4>
+      <div className="icon-container-heading">
+        <i className={`fa${isBrandCategory ? 'b' : 's'} fa-${iconName}`} />
+        <h4>{iconName}</h4>
+      </div>
       <p>{iconDescription}</p>
       {isDeprecated &&
         <div className="deprecated-label">Deprecated icon</div>
       }
-      { url.split(".").pop() === "mp4" &&
+      { urlExtension === ("mp4" || "webm") &&
         <video loop autoPlay muted>
           <source src={ url } type="video/mp4"/>
         </video>
       }
-      { url.split(".").pop() !== "mp4" &&
+      { urlExtension !== ("mp4" || "webm") &&
         <img src={url} />
       }
     </li>

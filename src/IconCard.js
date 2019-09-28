@@ -17,7 +17,14 @@ export function IconCard({
       {isDeprecated &&
         <div className="deprecated-label">Deprecated icon</div>
       }
-      <img src={url} />
+      { url.split(".").pop() === "mp4" &&
+        <video loop autoPlay muted>
+          <source src={ url } type="video/mp4"/>
+        </video>
+      }
+      { url.split(".").pop() !== "mp4" &&
+        <img src={url} />
+      }
     </li>
   )
 }
